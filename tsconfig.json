@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "noImplicitAny": true
+  },
+  "references": [
+    { "path": "packages/types" },
+    { "path": "packages/utils" },
+    { "path": "packages/dal" },
+    { "path": "apps/api" }
+  ]
+}

@@ -1,0 +1,97 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+}
+
+.hero {
+  text-align: center;
+  max-width: 600px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 14vw, 9rem);
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  margin: 0;
+  line-height: 1;
+  text-shadow: 0 0 80px rgba(245, 166, 35, 0.3);
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  margin: 1.2rem 0 2.5rem;
+  line-height: 1.7;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: flex-start;
+}
+
+.label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+
+.startBtn {
+  height: 44px !important;
+  padding: 0 2.5rem !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  top: 11px;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.metaNum {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.metaLabel {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+
+.metaDivider {
+  width: 1px;
+  height: 2rem;
+  background: var(--color-border);
+}

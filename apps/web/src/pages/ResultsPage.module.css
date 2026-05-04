@@ -1,0 +1,235 @@
+.root {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 1rem;
+}
+
+.scoreHeader {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.scoreCircle {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: conic-gradient(var(--color-accent) var(--pct), var(--color-border) 0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.scoreCircle::before {
+  content: '';
+  position: absolute;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: var(--color-surface);
+}
+
+.scoreNum {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--color-accent);
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.scoreOf {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  position: relative;
+  z-index: 1;
+}
+
+.scoreInfo {
+  flex: 1;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--color-text);
+  margin: 0 0 0.3rem;
+  letter-spacing: 0.05em;
+}
+
+.pct {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.saveScore {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.saveLabel {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.saveRow {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.savedMsg {
+  padding: 1rem 1.5rem;
+  background: rgba(82, 196, 26, 0.1);
+  border: 1px solid var(--color-correct);
+  border-radius: 8px;
+  color: var(--color-correct);
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.link {
+  background: none;
+  border: none;
+  color: var(--color-accent);
+  cursor: pointer;
+  font-size: inherit;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.resultsTitle {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  letter-spacing: 0.05em;
+  margin: 0 0 1rem;
+  color: var(--color-text-muted);
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.resultCard {
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  padding: 1.25rem;
+  background: var(--color-surface);
+}
+
+.resultCard.correct {
+  border-color: rgba(82, 196, 26, 0.4);
+  background: rgba(82, 196, 26, 0.04);
+}
+
+.resultCard.incorrect {
+  border-color: rgba(255, 77, 79, 0.4);
+  background: rgba(255, 77, 79, 0.04);
+}
+
+.resultHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.qIndex {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+}
+
+.resultBadge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.correct .resultBadge { color: var(--color-correct); }
+.incorrect .resultBadge { color: var(--color-incorrect); }
+
+.qText {
+  font-size: 0.95rem;
+  margin: 0 0 0.85rem;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+.choiceList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.choiceItem {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 4px;
+  color: var(--color-text-muted);
+  background: var(--color-surface-2);
+}
+
+.correctChoice {
+  color: var(--color-correct);
+  background: rgba(82, 196, 26, 0.1);
+  border: 1px solid rgba(82, 196, 26, 0.3);
+}
+
+.wrongChoice {
+  color: var(--color-incorrect);
+  background: rgba(255, 77, 79, 0.1);
+  border: 1px solid rgba(255, 77, 79, 0.3);
+}
+
+.explanation {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+  padding: 0.7rem;
+  background: var(--color-surface-2);
+  border-radius: 4px;
+  border-left: 3px solid var(--color-accent);
+}
+
+.explanationLabel {
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}

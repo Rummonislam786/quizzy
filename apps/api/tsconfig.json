@@ -1,0 +1,28 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": ["ES2020"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "paths": {
+      "@quizzy/types": ["../../packages/types/dist"],
+      "@quizzy/utils": ["../../packages/utils/dist"],
+      "@quizzy/dal": ["../../packages/dal/dist"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"],
+  "references": [
+    { "path": "../../packages/types" },
+    { "path": "../../packages/utils" },
+    { "path": "../../packages/dal" }
+  ]
+}

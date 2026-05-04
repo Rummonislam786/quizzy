@@ -1,0 +1,123 @@
+.root {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 1rem;
+}
+
+.loadingText {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.questionCounter {
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem;
+  white-space: nowrap;
+}
+
+.qNum {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.qTotal {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.progressWrap {
+  flex: 1;
+}
+
+.answeredBadge {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.questionCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.questionText {
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.6;
+  margin: 0 0 1.75rem;
+  color: var(--color-text);
+}
+
+.choices {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.6rem !important;
+  width: 100%;
+}
+
+.choice {
+  width: 100% !important;
+  height: auto !important;
+  padding: 0.75rem 1rem !important;
+  text-align: left !important;
+  white-space: normal !important;
+  border-radius: 6px !important;
+  border: 1px solid var(--color-border) !important;
+  color: var(--color-text) !important;
+  background: var(--color-surface-2) !important;
+  transition: border-color 0.15s, background 0.15s !important;
+  line-height: 1.5 !important;
+}
+
+.choice:hover {
+  border-color: var(--color-accent) !important;
+  background: var(--color-accent-dim) !important;
+}
+
+.choice.selected,
+:global(.ant-radio-button-wrapper-checked).choice {
+  border-color: var(--color-accent) !important;
+  background: var(--color-accent-dim) !important;
+  color: var(--color-accent) !important;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.submitBtn {
+  background: var(--color-correct) !important;
+  border-color: var(--color-correct) !important;
+}
+
+.unansweredWarning {
+  text-align: center;
+  color: var(--color-incorrect);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
