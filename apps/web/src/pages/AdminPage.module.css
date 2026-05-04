@@ -35,17 +35,21 @@
 .table {
   border: 1px solid var(--color-border) !important;
   border-radius: 8px !important;
-  overflow: hidden;
+  background: var(--color-surface);
 }
 
 .qText {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
+  /* Remove the -webkit-line-clamp and overflow hidden */
+  display: block;
   font-size: 0.9rem;
+  white-space: normal; /* Allows text to wrap to the next line */
+  word-break: break-word; /* Prevents long URLs/words from breaking the layout */
 }
-
+.fullText {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  padding: 4px 0;
+}
 .pagination {
   display: flex;
   justify-content: flex-end;
@@ -73,4 +77,46 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  .subtitle {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .toolbar > span,
+  .toolbar > button {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .table :global(.ant-table-content) {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table :global(.ant-table-tbody > tr > td) {
+    padding: 12px 4px !important;
+  }
+
+  .choiceRow {
+    gap: 0.4rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .pagination {
+    justify-content: center;
+  }
 }

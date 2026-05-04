@@ -29,7 +29,7 @@ export default function HomePage() {
                 value: n,
                 label: `${n} Questions`,
               }))}
-              style={{ width: 160 }}
+              className={styles.selectInput}
               size="large"
             />
           </div>

@@ -1,29 +1,39 @@
-import { Outlet, NavLink, useLocation } from 'react-router-dom';
-import styles from './Layout.module.css';
+import { useState } from "react";
+import { Outlet, NavLink, useLocation } from "react-router-dom";
+import styles from "./Layout.module.css";
 
 const navItems = [
-  { to: '/', label: 'Home', exact: true },
-  { to: '/leaderboard', label: 'Leaderboard' },
-  { to: '/admin', label: 'Admin' },
+  { to: "/", label: "Home", exact: true },
+  { to: "/leaderboard", label: "Leaderboard" },
+  { to: "/admin", label: "Admin" },
 ];
 
 export default function Layout() {
   const location = useLocation();
-
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className={styles.root}>
       <header className={styles.header}>
         <NavLink to="/" className={styles.logo}>
           QUIZZY
         </NavLink>
-        <nav className={styles.nav}>
+
+        <button
+          className={styles.menuBtn}
+          onClick={() => setMenuOpen((v) => !v)}
+        >
+          ☰
+        </button>
+
+        <nav className={`${styles.nav} ${menuOpen ? styles.open : ""}`}>
           {navItems.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
               end={item.exact}
+              onClick={() => setMenuOpen(false)}
               className={({ isActive }) =>
-                `${styles.navLink} ${isActive ? styles.active : ''}`
+                `${styles.navLink} ${isActive ? styles.active : ""}`
               }
             >
               {item.label}

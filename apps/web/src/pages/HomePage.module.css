@@ -29,7 +29,7 @@
 
 .controls {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
@@ -56,7 +56,6 @@
   font-weight: 700 !important;
   letter-spacing: 0.05em !important;
   text-transform: uppercase !important;
-  top: 11px;
 }
 
 .meta {
@@ -94,4 +93,43 @@
   width: 1px;
   height: 2rem;
   background: var(--color-border);
+}
+.selectInput {
+  width: 160px;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: clamp(3rem, 12vw, 5rem);
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .control {
+    width: 100%;
+    align-items: stretch;
+  }
+  .selectInput {
+    width: 100% !important;
+  }
+  .startBtn {
+    width: 100%;
+  }
+
+  .meta {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .metaDivider {
+    display: none;
+  }
 }

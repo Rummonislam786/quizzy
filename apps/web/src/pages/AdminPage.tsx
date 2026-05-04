@@ -1,12 +1,31 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback } from "react";
 import {
-  Button, Input, Table, Space, Modal, Form,
-  Switch, message, Popconfirm, Tag, Pagination,
-} from 'antd';
-import { PlusOutlined, EditOutlined, DeleteOutlined, SearchOutlined } from '@ant-design/icons';
-import { getQuestions, createQuestion, updateQuestion, deleteQuestion } from '../services/api';
-import type { Question, Choice, CreateQuestionRequest } from '@quizzy/types';
-import styles from './AdminPage.module.css';
+  Button,
+  Input,
+  Table,
+  Space,
+  Modal,
+  Form,
+  Switch,
+  message,
+  Popconfirm,
+  Tag,
+  Pagination,
+} from "antd";
+import {
+  PlusOutlined,
+  EditOutlined,
+  DeleteOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
+import {
+  getQuestions,
+  createQuestion,
+  updateQuestion,
+  deleteQuestion,
+} from "../services/api";
+import type { Question, Choice, CreateQuestionRequest } from "@quizzy/types";
+import styles from "./AdminPage.module.css";
 
 type QuestionWithChoices = Question & { choices: Choice[] };
 
@@ -27,10 +46,11 @@ export default function AdminPage() {
   const [questions, setQuestions] = useState<QuestionWithChoices[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
-  const [editingQuestion, setEditingQuestion] = useState<QuestionWithChoices | null>(null);
+  const [editingQuestion, setEditingQuestion] =
+    useState<QuestionWithChoices | null>(null);
   const [form] = Form.useForm<QuestionFormValues>();
   const [saving, setSaving] = useState(false);
 
@@ -58,13 +78,13 @@ export default function AdminPage() {
   const openCreate = () => {
     setEditingQuestion(null);
     form.setFieldsValue({
-      question_text: '',
-      explanation_text: '',
+      question_text: "",
+      explanation_text: "",
       choices: [
-        { choice_text: '', is_correct: true },
-        { choice_text: '', is_correct: false },
-        { choice_text: '', is_correct: false },
-        { choice_text: '', is_correct: false },
+        { choice_text: "", is_correct: true },
+        { choice_text: "", is_correct: false },
+        { choice_text: "", is_correct: false },
+        { choice_text: "", is_correct: false },
       ],
     });
     setModalOpen(true);
@@ -93,7 +113,7 @@ export default function AdminPage() {
 
     const correctCount = values.choices.filter((c) => c.is_correct).length;
     if (correctCount !== 1) {
-      message.error('Exactly one choice must be marked correct');
+      message.error("Exactly one choice must be marked correct");
       return;
     }
 
@@ -101,10 +121,10 @@ export default function AdminPage() {
     try {
       if (editingQuestion) {
         await updateQuestion(editingQuestion.id, values);
-        message.success('Question updated');
+        message.success("Question updated");
       } else {
         await createQuestion(values as CreateQuestionRequest);
-        message.success('Question created');
+        message.success("Question created");
       }
       setModalOpen(false);
       fetchData(search, page);
@@ -118,7 +138,7 @@ export default function AdminPage() {
   const handleDelete = async (id: number) => {
     try {
       await deleteQuestion(id);
-      message.success('Question deleted');
+      message.success("Question deleted");
       fetchData(search, page);
     } catch (err) {
       message.error((err as Error).message);
@@ -126,39 +146,43 @@ export default function AdminPage() {
   };
 
   const handleCorrectToggle = (index: number) => {
-    const choices = form.getFieldValue('choices') as ChoiceField[];
+    const choices = form.getFieldValue("choices") as ChoiceField[];
     const updated = choices.map((c, i) => ({ ...c, is_correct: i === index }));
-    form.setFieldValue('choices', updated);
+    form.setFieldValue("choices", updated);
   };
 
   const columns = [
     {
-      title: 'Question',
-      dataIndex: 'question_text',
-      key: 'question_text',
-      render: (text: string) => <span className={styles.qText}>{text}</span>,
+      title: "Question",
+      dataIndex: "question_text",
+      key: "question_text",
+      render: (text: string) => <div className={styles.fullText}>{text}</div>,
+      width: 400,
     },
     {
-      title: 'Choices',
-      key: 'choices',
-      width: 120,
+      title: "Choices",
+      key: "choices",
+      width: 80,
+
       render: (_: unknown, record: QuestionWithChoices) => (
         <Tag color="default">{record.choices.length} choices</Tag>
       ),
     },
     {
-      title: 'Created',
-      dataIndex: 'created_at',
-      key: 'created_at',
+      title: "Created",
+      dataIndex: "created_at",
+      key: "created_at",
       width: 120,
       render: (d: string) => new Date(d).toLocaleDateString(),
     },
     {
-      title: 'Actions',
-      key: 'actions',
-      width: 120,
+      title: "Actions",
+      key: "actions",
+      width: 80,
+      fixed: "right" as const,
+      align: "center" as const,
       render: (_: unknown, record: QuestionWithChoices) => (
-        <Space>
+        <Space size="middle">
           <Button
             icon={<EditOutlined />}
             size="small"
@@ -189,7 +213,10 @@ export default function AdminPage() {
           prefix={<SearchOutlined />}
           placeholder="Search questions..."
           value={search}
-          onChange={(e) => { setSearch(e.target.value); setPage(1); }}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setPage(1);
+          }}
           style={{ maxWidth: 320 }}
           allowClear
         />
@@ -205,7 +232,8 @@ export default function AdminPage() {
         loading={loading}
         pagination={false}
         className={styles.table}
-        locale={{ emptyText: 'No questions found' }}
+        scroll={{ x: 800 }}
+        locale={{ emptyText: "No questions found" }}
       />
 
       <div className={styles.pagination}>
@@ -220,20 +248,21 @@ export default function AdminPage() {
       </div>
 
       <Modal
-        title={editingQuestion ? 'Edit Question' : 'Add Question'}
+        title={editingQuestion ? "Edit Question" : "Add Question"}
         open={modalOpen}
         onOk={handleSave}
         onCancel={() => setModalOpen(false)}
-        okText={saving ? 'Saving...' : 'Save'}
+        okText={saving ? "Saving..." : "Save"}
         confirmLoading={saving}
         width={640}
+        style={{ maxWidth: "95vw", top: 20 }}
         destroyOnClose
       >
         <Form form={form} layout="vertical" className={styles.form}>
           <Form.Item
             name="question_text"
             label="Question"
-            rules={[{ required: true, message: 'Question text is required' }]}
+            rules={[{ required: true, message: "Question text is required" }]}
           >
             <Input.TextArea rows={3} placeholder="Enter the question..." />
           </Form.Item>
@@ -241,13 +270,17 @@ export default function AdminPage() {
           <Form.Item
             name="explanation_text"
             label="Explanation (shown for wrong answers)"
-            rules={[{ required: true, message: 'Explanation is required' }]}
+            rules={[{ required: true, message: "Explanation is required" }]}
           >
-            <Input.TextArea rows={2} placeholder="Explain the correct answer..." />
+            <Input.TextArea
+              rows={2}
+              placeholder="Explain the correct answer..."
+            />
           </Form.Item>
 
           <div className={styles.choicesLabel}>
-            Choices <span className={styles.choicesHint}>(toggle to mark correct)</span>
+            Choices{" "}
+            <span className={styles.choicesHint}>(toggle to mark correct)</span>
           </div>
 
           <Form.List name="choices">
@@ -257,7 +290,7 @@ export default function AdminPage() {
                   <Form.Item key={field.key} style={{ marginBottom: 8 }}>
                     <div className={styles.choiceRow}>
                       <Form.Item
-                        name={[field.name, 'is_correct']}
+                        name={[field.name, "is_correct"]}
                         noStyle
                         valuePropName="checked"
                       >
@@ -269,9 +302,11 @@ export default function AdminPage() {
                         />
                       </Form.Item>
                       <Form.Item
-                        name={[field.name, 'choice_text']}
+                        name={[field.name, "choice_text"]}
                         noStyle
-                        rules={[{ required: true, message: 'Choice text required' }]}
+                        rules={[
+                          { required: true, message: "Choice text required" },
+                        ]}
                       >
                         <Input
                           placeholder={`Choice ${index + 1}`}
@@ -292,9 +327,9 @@ export default function AdminPage() {
                 {fields.length < 6 && (
                   <Button
                     type="dashed"
-                    onClick={() => add({ choice_text: '', is_correct: false })}
+                    onClick={() => add({ choice_text: "", is_correct: false })}
                     icon={<PlusOutlined />}
-                    style={{ width: '100%' }}
+                    style={{ width: "100%" }}
                   >
                     Add Choice
                   </Button>
